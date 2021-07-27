@@ -25,3 +25,16 @@ COMMAND  DESCRIPTION               REQUIRED
 -h       Help Menu.
 
 ```
+
+Output Example:
+```
+╰─$ go run ghttp.go -u http://testphp.vulnweb.com/ -c -cnm -server -title -cl -H "User-Agent:Mozilla"                                                                                       1 ↵
+6 Links Found.
+1 [200]https://www.acunetix.com/ [Acunetix | Web Application Security Scanner][acunetix.com][www.acunetix.com.][111857b]
+2 [200]https://www.acunetix.com/vulnerability-scanner/ [Vulnerability Scanner - Web Application Security | Acunetix][acunetix.com][www.acunetix.com.][146129b]
+3 [200]http://www.acunetix.com [Acunetix | Web Application Security Scanner][acunetix.com][www.acunetix.com.][111857b]
+4 [200]https://www.acunetix.com/vulnerability-scanner/php-security-scanner/ [PHP Security Scanner | Acunetix][acunetix.com][www.acunetix.com.][144610b]
+5 [200]https://www.acunetix.com/blog/articles/prevent-sql-injection-vulnerabilities-in-php-applications/ [Prevent SQL injection vulnerabilities in PHP applications and fix them][acunetix.com][www.acunetix.com.][174700b]
+6 [403]http://www.eclectasy.com/Fractal-Explorer/index.html [403 Forbidden][Apache/2][www.eclectasy.com.][236b]
+
+```
