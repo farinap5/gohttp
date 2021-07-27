@@ -28,7 +28,7 @@ COMMAND  DESCRIPTION               REQUIRED
 
 Output Example:
 ```
-╰─$ go run ghttp.go -u http://testphp.vulnweb.com/ -c -cnm -server -title -cl -H "User-Agent:Mozilla"                                                                                       1 ↵
+╰─$ go run ghttp.go -u http://testphp.vulnweb.com/ -c -cnm -server -title -cl -H "User-Agent:Mozilla"                                                                                       
 6 Links Found.
 1 [200]https://www.acunetix.com/ [Acunetix | Web Application Security Scanner][acunetix.com][www.acunetix.com.][111857b]
 2 [200]https://www.acunetix.com/vulnerability-scanner/ [Vulnerability Scanner - Web Application Security | Acunetix][acunetix.com][www.acunetix.com.][146129b]
