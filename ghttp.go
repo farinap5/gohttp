@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/cheynewallace/tabby"
+	"io"
 	"io/ioutil"
 	"net"
 	"net/http"
@@ -342,6 +343,14 @@ func main() {
 		_help()
 		os.Exit(1)
 	}
+
+	// Check std in
+	in := stdin()
+	if in != "false" {
+		reqList(in,gT,gS,nH,gIp,cL,cnm)
+		os.Exit(1)
+	}
+
 	if *url == "false" && *hL == "false" {
 		println("No URL or list of hosts!")
 		println("type argument -h")
@@ -421,4 +430,43 @@ func _help() {
 	t.AddLine("-H","Set request headers.","No")
 	t.AddLine("-h","Help Menu.")
 	t.Print()
+}
+
+func stdin() string {
+	var stdIN string = "false"
+	f, err := os.Stdin.Stat()
+	if err != nil {
+		panic(err.Error())
+	}
+
+	if f.Mode() & os.ModeNamedPipe == 0 {
+
+	} else {
+		//println("We have a pipe!")
+		read := bufio.NewReader(os.Stdin)
+		var output []rune
+
+		for {
+			input,_,err := read.ReadRune()
+			if err != nil && err == io.EOF {
+				break
+			}
+			output = append(output,input)
+		}
+		for j := 0;j < len(output); j++ {
+			//fmt.Printf("%c",output[j])
+		}
+		stdIN = parseLog(string(output))
+	}
+	return stdIN
+}
+// Build url from logs
+// it will get fields: 8 and 12
+// starting from 0
+func parseLog(req string) string {
+	reqS := strings.Split(req," ")
+	//println(reqS[8]," ",reqS[12])
+	host := strings.Replace(reqS[12],"\"","",-1)
+	Path := strings.Replace(reqS[8],"//","/",-1)
+	return host + Path
 }
